@@ -11,7 +11,8 @@
 </header>
 <hr>
 <body>
-    <h2>Times:</h2>
+    <h1>Times:</h1>
+    <h2>Adicionar Jogador</h2>
     <label for="position">Posição: </label>
     <br>
     <input id="position" type="text">
@@ -26,11 +27,19 @@
     <br>
     <br>
     <button onclick="addPlayer()">Adicionar Jogador</button>
+    <br>
+    <br>
+    <h2>Remover Jogador</h2>
+    <label for="numberRemove">Número da Camisa</label>
+    <br>
+    <input id="numberRemove" type="number">
+    <br>
+    <br>
     <button onclick="removePlayer()">Remover Jogador</button>
     <br>
     <br>
-    <section id="removeInput"></section>
     <hr>
-    <section id="playerSection"></section>
+    <h3>Jogadores:</h3>
+    <ul id="playerUl"></ul>
 </body>
 </html>

@@ -1,49 +1,37 @@
 function addPlayer(){
-    const playerSection = document.getElementById("playerSection")
+    const position = document.getElementById('position').value
+    const name = document.getElementById('name').value
+    const number = document.getElementById('number').value
 
-    const h3 = document.createElement('h3')
-    h3.innerText = "Jogador"
+    const confirmation = confirm("Escalar " + name + " camisa " + number + " como " + position + "?")
 
-    const ul = document.createElement('ul')
+    if (confirmation){
+        const playerUl = document.getElementById('playerUl')
+        const playerItem = document.createElement('li')
 
-    const positionValue = document.getElementById('position')
-    const positionLi = document.createElement('li')
-    positionLi.innerText = positionValue.value
+        playerItem.id = "player-" + number
+        playerItem.innerText = position + ": " + name + " (" + number +")"
 
-    const nameValue = document.getElementById('name')
-    const nameLi = document.createElement('li')
-    nameLi.innerText = nameValue.value
+        playerUl.append(playerItem)
 
-    const numberValue = document.getElementById('number')
-    const numberLi = document.createElement('li')
-    numberLi.innerText = numberValue.value
+        document.getElementById('position').value = ""
+        document.getElementById('name').value = ""
+        document.getElementById('number').value = ""
+    }
 
-    ul.appendChild(positionLi)
-    ul.appendChild(nameLi)
-    ul.appendChild(numberLi)
-    playerSection.append(h3, ul)
-
-    positionValue.value = ""
-    nameValue.value = ""
-    numberValue.value = ""
 }
 
 function removePlayer(){
-    const removeSection = document.getElementById('removeInput')
-    const numberLabel = document.createElement('label')
-    numberLabel.innerText = 'Insira o número do jogador que deseja remover: '
-    const numberInput = document.createElement('input')
-    numberInput.type = 'number'
+    const number = document.getElementById('numberRemove').value
+    const playerToRemove = document.getElementById("player-" + number)
 
-    const removeConfirmation = document.createElement('button')
-    removeConfirmation.innerText = "REMOVER"
-    removeConfirmation.onclick = 
-    
-    removeSection.append(numberLabel, numberInput, removeConfirmation)
+    const confirmation = confirm("Deseja remover o jogador " + playerToRemove.innerText)
 
-    const playerSection = document.getElementById("playerSection")
-    const titles = document.getElementsByTagName('h3')
-    const players = document.getElementsByTagName('ul')
+    if(confirmation){
+        document.getElementById('playerUl').removeChild(playerToRemove)
+        document.getElementById('numberRemove').value = ""
+    }
 
 
 }
+
