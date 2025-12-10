@@ -19,6 +19,10 @@ function initializeGame(){
         element.addEventListener('click', handleBoardClick)
     })
 }
+function disableRegion(element){
+    element.style.cursor = 'default'
+    element.removeEventListener('click', handleBoardClick)
+}
 
 function handleBoardClick(ev){
     const span = ev.currentTarget
@@ -35,6 +39,7 @@ function handleBoardClick(ev){
     }
     console.clear()
     console.table(vBoard)
+    disableRegion(span)
 }
 
 document.getElementById('start').addEventListener('click', initializeGame)
