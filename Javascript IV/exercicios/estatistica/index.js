@@ -42,3 +42,17 @@ console.log(mediana(2, 4, 7)) // Deve dar 4
 
 // Teste Par (2, 4, 7, 10) -> Meio é 4 e 7 -> Média 5.5
 console.log(mediana(2, 4, 7, 10))
+
+const moda = (...numbers) => {
+    const list = numbers.map(num => [
+        num,
+        numbers.filter(n => num === n).length
+    ])
+
+    list.sort((a, b) => b[1] - a[1])
+
+    return list[0][0]
+}
+
+
+console.log(moda(1, 1, 5, 4, 9, 7, 4, 3, 5, 2, 4, 0, 4))
