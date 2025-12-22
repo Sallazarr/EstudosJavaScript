@@ -20,17 +20,17 @@ const cartValue = document.getElementById('total')
 
 // SEU CÓDIGO COMEÇA AQUI...
 
-function showProducts(productsArray){
+function showProducts(productsArray) {
     listaUl.innerHTML = ''
     productsArray.forEach(product => {
-        const {nome, preco, tipo} = product
+        const { nome, preco, tipo } = product
         const li = document.createElement('li')
         li.innerText = `Nome: ${nome} - Preço: R$${preco} `
 
         const button = document.createElement('button')
-        button.innerText = '+' 
+        button.innerText = '+'
 
-        button.addEventListener('click', (ev) =>{
+        button.addEventListener('click', (ev) => {
             cart.push(product)
             sum(cart)
             renderCart(cart)
@@ -42,36 +42,43 @@ function showProducts(productsArray){
 
 }
 
-function renderCart (cartItens){
+function renderCart(cartItens) {
     cartList.innerHTML = ''
-    cartItens.forEach(cartProduct => {
-    const {nome, preco, tipo} = cartProduct
-    const li = document.createElement('li')
-    li.innerText = `Nome: ${nome} - Preço: R$${preco}`   
-    cartList.appendChild(li)
+
+    cartItens.forEach((cartProduct, index) => {
+        const { nome, preco, tipo } = cartProduct
+
+        const li = document.createElement('li')
+        li.innerText = `Nome: ${nome} - Preço: R$${preco}`
+        li.addEventListener('click', () => {
+            cart.splice(index, 1)
+            sum(cart)
+            renderCart(cart)
+        })
+        cartList.appendChild(li)
     })
 }
 
 
 showProducts(produtos)
 
-allBtn.addEventListener('click', (ev) =>{
+allBtn.addEventListener('click', (ev) => {
     showProducts(produtos)
 })
 
-gunsBtn.addEventListener('click', (ev) =>{
-    const gunslist = produtos.filter(({tipo}) => tipo === 'arma') 
+gunsBtn.addEventListener('click', (ev) => {
+    const gunslist = produtos.filter(({ tipo }) => tipo === 'arma')
 
     showProducts(gunslist)
 })
 
-foodBtn.addEventListener('click', (ev) =>{
-    const foodList = produtos.filter(({tipo}) => tipo === 'comida')
-    
+foodBtn.addEventListener('click', (ev) => {
+    const foodList = produtos.filter(({ tipo }) => tipo === 'comida')
+
     showProducts(foodList)
 })
 
-function sum(cart){
+function sum(cart) {
     const total = cart.reduce((accum, product) => {
         return accum + product.preco
     }, 0)
