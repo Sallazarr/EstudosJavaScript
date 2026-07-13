@@ -8,6 +8,6 @@ class Address {
   }
 
   fullAddress() {
-    return `${this.street}, n° ${this.number} - ${this.neighborhood}, ${this.city} - ${this.state}`;
+    return `${this.street}, n° ${this.number} - ${this.neighborhood}, ${this.city} / ${this.state}`;
   }
 }
