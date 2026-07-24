@@ -15,4 +15,13 @@ module.exports = class Survivor extends Entity {
       targetEntity.hp -= this.atk - targetEntity.def;
     }
   }
+  useHerb() {
+    if (this.hp <= 50) {
+      this.hp += 50;
+    } else if (this.hp === 100) {
+      console.log("Vida já cheia");
+    } else {
+      this.hp = 100;
+    }
+  }
 };
